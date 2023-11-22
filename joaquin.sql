@@ -1,28 +1,35 @@
-# GROUP BY nos sirve para agrupar registros sobre una columna
 
-# 1 
-SELECT COUNT(*) FROM movies;
 
-#2
-SELECT COUNT(*) FROM movies
-WHERE awards BETWEEN 3 AND 7;
+# Ejercicio 1
+SELECT series.title, genres.name AS genero
+FROM series
+INNER JOIN genres ON genres.id = series.genre_id;
 
-#3
-SELECT COUNT(*) FROM movies
-WHERE awards BETWEEN 3 AND 7 AND rating > 7;
+#Ejercicio 2
 
-#4
-SELECT COUNT(*) 
-FROM actors_movie;
+SELECT episodes.title AS titulo,actors.first_name,actors.last_name
+FROM episodes
+INNER JOIN actor_episode ON actor_episode.episode_id=episodes.id
+INNER JOIN  actors ON  actor_episode.actor_id=actors.id;
 
-#5
-SELECT genre_id, COUNT(*) 
-FROM movies
-GROUP BY genre_id;
 
-#6
-SELECT genre_id, awards, COUNT(*) 
-FROM movies
-GROUP BY genre_id
+#Ejercicio 3
+
+
+SELECT distinct actors.first_name AS nombre, actors.last_name AS apellido
+FROM actors
+INNER JOIN actor_movie ON actors.id = actor_movie.actor_id
+INNER JOIN movies ON actor_movie.movie_id = movies.id
+WHERE movies.title LIKE "La Guerra de las galaxias%";
+
+
+
+
+
+
+
+
+
+
 
 
